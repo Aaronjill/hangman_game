@@ -1,68 +1,14 @@
 import random
-
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
-
+import os
+from hangman_words import word_list
+from hangman_art import stages
+from hangman_art import logo
+print(logo)
 end_of_game = False
-word_list = ["ardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
 
 lives=6
-print(f'Pssst, the solution is {chosen_word}.')
+
 
 c_w_l=[]
 b=''
@@ -71,7 +17,9 @@ for n in chosen_word:
 
 
 while end_of_game == False:
-  guess = input("Guess a letter: ").lower()    
+  guess = input("Guess a letter: ").lower() 
+  os.system('cls')
+  print(logo)   
   l=0
   for n in chosen_word:
     if n == guess:
@@ -81,6 +29,7 @@ while end_of_game == False:
     lives-=1
     if lives == 0:
       print('\nYou lose')
+      print(f'Pssst, the solution is {chosen_word}.')
       end_of_game=True
   print(stages[lives])
   print(f"{' '.join(c_w_l)}")
